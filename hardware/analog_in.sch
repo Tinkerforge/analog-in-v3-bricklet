@@ -915,4 +915,5 @@ Wire Wire Line
 	3100 6400 3050 6400
 Wire Wire Line
 	3050 6400 3050 6350
+Connection ~ 5000 1450
 $EndSCHEMATC

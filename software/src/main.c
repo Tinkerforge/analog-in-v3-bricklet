@@ -29,14 +29,18 @@
 #include "bricklib2/logging/logging.h"
 #include "communication.h"
 
+#include "voltage.h"
+
 int main(void) {
 	logging_init();
 	logd("Start Analog In V3 Bricklet\n\r");
 
 	communication_init();
+	voltage_init();
 
 	while(true) {
 		bootloader_tick();
 		communication_tick();
+		voltage_tick();
 	}
 }

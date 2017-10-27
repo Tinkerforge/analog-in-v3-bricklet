@@ -34,6 +34,23 @@ void communication_tick(void);
 void communication_init(void);
 
 // Constants
+#define ANALOG_IN_V3_THRESHOLD_OPTION_OFF 'x'
+#define ANALOG_IN_V3_THRESHOLD_OPTION_OUTSIDE 'o'
+#define ANALOG_IN_V3_THRESHOLD_OPTION_INSIDE 'i'
+#define ANALOG_IN_V3_THRESHOLD_OPTION_SMALLER '<'
+#define ANALOG_IN_V3_THRESHOLD_OPTION_GREATER '>'
+
+#define ANALOG_IN_V3_OVERSAMPLING_32 0
+#define ANALOG_IN_V3_OVERSAMPLING_64 1
+#define ANALOG_IN_V3_OVERSAMPLING_128 2
+#define ANALOG_IN_V3_OVERSAMPLING_256 3
+#define ANALOG_IN_V3_OVERSAMPLING_512 4
+#define ANALOG_IN_V3_OVERSAMPLING_1024 5
+#define ANALOG_IN_V3_OVERSAMPLING_2048 6
+#define ANALOG_IN_V3_OVERSAMPLING_4096 7
+#define ANALOG_IN_V3_OVERSAMPLING_8192 8
+#define ANALOG_IN_V3_OVERSAMPLING_16384 9
+
 #define ANALOG_IN_V3_BOOTLOADER_MODE_BOOTLOADER 0
 #define ANALOG_IN_V3_BOOTLOADER_MODE_FIRMWARE 1
 #define ANALOG_IN_V3_BOOTLOADER_MODE_BOOTLOADER_WAIT_FOR_REBOOT 2
@@ -53,19 +70,62 @@ void communication_init(void);
 #define ANALOG_IN_V3_STATUS_LED_CONFIG_SHOW_STATUS 3
 
 // Function and callback IDs and structs
+#define FID_GET_VOLTAGE 1
+#define FID_SET_VOLTAGE_CALLBACK_CONFIGURATION 2
+#define FID_GET_VOLTAGE_CALLBACK_CONFIGURATION 3
+#define FID_SET_OVERSAMPLING 5
+#define FID_GET_OVERSAMPLING 6
+#define FID_SET_CALIBRATION 7
+#define FID_GET_CALIBRATION 8
 
+#define FID_CALLBACK_VOLTAGE 4
 
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t oversampling;
+} __attribute__((__packed__)) SetOversampling;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetOversampling;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t oversampling;
+} __attribute__((__packed__)) GetOversampling_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t offset;
+	uint16_t multiplier;
+	uint16_t divisor;
+} __attribute__((__packed__)) SetCalibration;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetCalibration;
+
+typedef struct {
+	TFPMessageHeader header;
+	int16_t offset;
+	uint16_t multiplier;
+	uint16_t divisor;
+} __attribute__((__packed__)) GetCalibration_Response;
 
 
 // Function prototypes
-
+BootloaderHandleMessageResponse set_oversampling(const SetOversampling *data);
+BootloaderHandleMessageResponse get_oversampling(const GetOversampling *data, GetOversampling_Response *response);
+BootloaderHandleMessageResponse set_calibration(const SetCalibration *data);
+BootloaderHandleMessageResponse get_calibration(const GetCalibration *data, GetCalibration_Response *response);
 
 // Callbacks
-
+bool handle_voltage_callback(void);
 
 #define COMMUNICATION_CALLBACK_TICK_WAIT_MS 1
-#define COMMUNICATION_CALLBACK_HANDLER_NUM 0
+#define COMMUNICATION_CALLBACK_HANDLER_NUM 1
 #define COMMUNICATION_CALLBACK_LIST_INIT \
+	handle_voltage_callback, \
 
 
 #endif

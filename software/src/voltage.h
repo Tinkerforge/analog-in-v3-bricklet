@@ -1,7 +1,7 @@
 /* analog-in-v3-bricklet
  * Copyright (C) 2017 Olaf Lüke <olaf@tinkerforge.com>
  *
- * config_logging.h: Logging configuration for Analog In V3 Bricklet
+ * voltage.h Calculate voltage from ADC
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,18 +18,33 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
+ 
+#ifndef VOLTAGE_H
+#define VOLTAGE_H
 
-#ifndef CONFIG_LOGGING_H
-#define CONFIG_LOGGING_H
+#include <stdbool.h>
+#include <stdint.h>
 
-//#define LOGGING_UARTBB
-//#define LOGGING_LEVEL LOGGING_DEBUG
-#define LOGGING_LEVEL LOGGING_NONE
+#define VOLTAGE_CALIBRATION_PAGE           1
+#define VOLTAGE_CALIBRATION_MAGIC_POS      0
+#define VOLTAGE_CALIBRATION_OFFSET_POS     1
+#define VOLTAGE_CALIBRATION_MULTIPLIER_POS 2
+#define VOLTAGE_CALIBRATION_DIVISOR_POS    3
 
-#define LOGGING_USE_BASENAME
-#define LOGGING_HAVE_SYSTEM_TIME
-#define LOGGING_TIMESTAMP_FORMAT "%u "
-#define LOGGING_SYSTEM_TIME_HEADER "bricklib2/hal/system_timer/system_timer.h"
-#define LOGGING_SYSTEM_TIME_FUNCTION system_timer_get_ms
+#define VOLTAGE_CALIBRATION_MAGIC          0x12345678
 
-#endif
+typedef struct {
+	bool oversampling_new;
+	uint8_t oversampling;
+
+	bool calibration_new;
+	int16_t calibration_offset;
+	uint16_t calibration_multiplier;
+	uint16_t calibration_divisor;
+} Voltage;
+
+void voltage_init(void);
+void voltage_tick(void);
+uint16_t voltage_get_voltage(void);
+
+#endif 

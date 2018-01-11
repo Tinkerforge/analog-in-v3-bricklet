@@ -1,0 +1,45 @@
+Notebook[{
+ Cell[
+  BoxData[{
+   RowBox[{"Needs", "[", "\"\<NETLink`\>\"", "]"}],
+   RowBox[{"LoadNETAssembly", "[", RowBox[{"\"\<Tinkerforge\>\"", ",", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../../..\>\""}]}], "]"}]
+  }], "Input"
+ ],
+ Cell[
+  BoxData[{
+   RowBox[{"host", "=", "\"\<localhost\>\""}],
+   RowBox[{"port", "=", "4223"}],
+   RowBox[{"uid", "=", "\"\<XYZ\>\"", RowBox[{"(*", "Change XYZ to the UID of your Analog In Bricklet 3.0", "*)"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Create IPConnection and device object", "*)"}],
+   RowBox[{"ipcon", "=", RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}],
+   RowBox[{"ai", "=", RowBox[{"NETNew", "[", RowBox[{"\"\<Tinkerforge.BrickletAnalogInV3\>\"", ",", "uid", ",", "ipcon"}], "]"}]}],
+   RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Get threshold callbacks with a debounce time of 10 seconds (10000ms)", "*)"}],
+   RowBox[{"ai", "@", RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Callback function for voltage callback (parameter has unit mV)", "*)"}],
+   RowBox[{RowBox[{"VoltageCB", "[", RowBox[{"sender_", ",", "voltage_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Voltage: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"voltage", ",", "\"\<V/1000\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
+   RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"ai", "@", "VoltageCallback"}], ",", "VoltageCB"}], "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Configure threshold for voltage ", "\"\<outside of 5 to 0 V\>\"", " (unit is mV)", "*)"}],
+   RowBox[{"(*", "with a debounce period of 1s (1000ms)", "*)"}],
+   RowBox[{"option", "=", "Tinkerforge`BrickletAnalogInV3`THRESHOLDUOPTIONUOUTSIDE"}],
+   RowBox[{"ai", "@", RowBox[{"SetVoltageCallbackConfiguration", "[", RowBox[{"1000", ",", "False", ",", "option", ",", RowBox[{"5", "*", "1000"}], ",", "0"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Clean up", "*)"}],
+   RowBox[{"ipcon", "@", RowBox[{"Disconnect", "[", "]"}]}],
+   RowBox[{"ReleaseNETObject", "[", "ai", "]"}],
+   RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]
+  }], "Input"
+ ]
+}]

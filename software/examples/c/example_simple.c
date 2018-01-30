@@ -23,7 +23,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current voltage (unit is mV)
+	// Get current voltage
 	uint16_t voltage;
 	if(analog_in_v3_get_voltage(&ai, &voltage) < 0) {
 		fprintf(stderr, "Could not get voltage, probably timeout\n");

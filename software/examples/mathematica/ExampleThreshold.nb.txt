@@ -10,17 +10,14 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 ai=NETNew["Tinkerforge.BrickletAnalogInV3",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
-ai@SetDebouncePeriod[10000]
-
-(*Callback function for voltage callback (parameter has unit mV)*)
+(*Callback function for voltage callback*)
 VoltageCB[sender_,voltage_]:=
  Print["Voltage: "<>ToString[N[Quantity[voltage,"V/1000"]]]]
 AddEventHandler[ai@VoltageCallback,VoltageCB]
 
-(*Configure threshold for voltage "outside of 5 to 0 V" (unit is mV)*)
+(*Configure threshold for voltage "smaller than 5 V"*)
 (*with a debounce period of 1s (1000ms)*)
-option=Tinkerforge`BrickletAnalogInV3`THRESHOLDUOPTIONUOUTSIDE
+option=Tinkerforge`BrickletAnalogInV3`THRESHOLDUOPTIONUSMALLER
 ai@SetVoltageCallbackConfiguration[1000,False,option,5*1000,0]
 
 Input["Click OK to exit"]

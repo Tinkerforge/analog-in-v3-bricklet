@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 ai=NETNew["Tinkerforge.BrickletAnalogInV3",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Callback function for voltage callback (parameter has unit mV)*)
+(*Callback function for voltage callback*)
 VoltageCB[sender_,voltage_]:=
  Print["Voltage: "<>ToString[N[Quantity[voltage,"V/1000"]]]]
 AddEventHandler[ai@VoltageCallback,VoltageCB]

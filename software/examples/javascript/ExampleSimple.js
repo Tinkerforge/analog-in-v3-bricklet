@@ -16,7 +16,7 @@ ipcon.connect(HOST, PORT,
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function (connectReason) {
-        // Get current voltage (unit is mV)
+        // Get current voltage
         ai.getVoltage(
             function (voltage) {
                 console.log('Voltage: ' + voltage/1000.0 + ' V');

@@ -17,7 +17,7 @@ public class ExampleSimple {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current voltage (unit is mV)
+		// Get current voltage
 		int voltage = ai.getVoltage(); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("Voltage: " + voltage/1000.0 + " V");
 

@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Analog In Bricklet 3.0
 
-// Callback function for voltage callback (parameter has unit mV)
+// Callback function for voltage callback
 void cb_voltage(uint16_t voltage, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 

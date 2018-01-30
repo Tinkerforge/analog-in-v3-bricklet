@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your Analog In Bricklet 3.0
 
-	// Callback function for voltage callback (parameter has unit mV)
+	// Callback function for voltage callback
 	static void VoltageCB(BrickletAnalogInV3 sender, int voltage)
 	{
 		Console.WriteLine("Voltage: " + voltage/1000.0 + " V");
@@ -21,15 +21,12 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-		ai.SetDebouncePeriod(10000);
-
 		// Register voltage callback to function VoltageCB
 		ai.VoltageCallback += VoltageCB;
 
-		// Configure threshold for voltage "outside of 5 to 0 V" (unit is mV)
+		// Configure threshold for voltage "smaller than 5 V"
 		// with a debounce period of 1s (1000ms)
-		ai.SetVoltageCallbackConfiguration(1000, false, 'o', 5*1000, 0);
+		ai.SetVoltageCallbackConfiguration(1000, false, '<', 5*1000, 0);
 
 		Console.WriteLine("Press enter to exit");
 		Console.ReadLine();

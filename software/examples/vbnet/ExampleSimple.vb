@@ -13,7 +13,7 @@ Module ExampleSimple
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
-        ' Get current voltage (unit is mV)
+        ' Get current voltage
         Dim voltage As Integer = ai.GetVoltage()
         Console.WriteLine("Voltage: " + (voltage/1000.0).ToString() + " V")
 

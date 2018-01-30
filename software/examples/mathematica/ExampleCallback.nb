@@ -18,7 +18,7 @@ Notebook[{
    RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for voltage callback (parameter has unit mV)", "*)"}],
+   RowBox[{"(*", "Callback function for voltage callback", "*)"}],
    RowBox[{RowBox[{"VoltageCB", "[", RowBox[{"sender_", ",", "voltage_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Voltage: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"voltage", ",", "\"\<V/1000\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"ai", "@", "VoltageCallback"}], ",", "VoltageCB"}], "]"}],
    RowBox[{"

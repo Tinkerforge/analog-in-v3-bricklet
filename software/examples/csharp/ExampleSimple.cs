@@ -15,7 +15,7 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current voltage (unit is mV)
+		// Get current voltage
 		int voltage = ai.GetVoltage();
 		Console.WriteLine("Voltage: " + voltage/1000.0 + " V");
 

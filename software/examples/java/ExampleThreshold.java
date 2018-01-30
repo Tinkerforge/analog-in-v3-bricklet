@@ -17,19 +17,16 @@ public class ExampleThreshold {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-		ai.setDebouncePeriod(10000);
-
-		// Add voltage listener (parameter has unit mV)
+		// Add voltage listener
 		ai.addVoltageListener(new BrickletAnalogInV3.VoltageListener() {
 			public void voltage(int voltage) {
 				System.out.println("Voltage: " + voltage/1000.0 + " V");
 			}
 		});
 
-		// Configure threshold for voltage "outside of 5 to 0 V" (unit is mV)
+		// Configure threshold for voltage "smaller than 5 V"
 		// with a debounce period of 1s (1000ms)
-		ai.setVoltageCallbackConfiguration(1000, false, 'o', 5*1000, 0);
+		ai.setVoltageCallbackConfiguration(1000, false, '<', 5*1000, 0);
 
 		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();

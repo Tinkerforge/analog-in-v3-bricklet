@@ -23,7 +23,7 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
 
 // Register voltage callback
 ai.on(Tinkerforge.BrickletAnalogInV3.CALLBACK_VOLTAGE,
-    // Callback function for voltage callback (parameter has unit mV)
+    // Callback function for voltage callback
     function (voltage) {
         console.log('Voltage: ' + voltage/1000.0 + ' V');
     }

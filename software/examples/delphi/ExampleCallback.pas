@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for voltage callback (parameter has unit mV) }
+{ Callback procedure for voltage callback }
 procedure TExample.VoltageCB(sender: TBrickletAnalogInV3; const voltage: word);
 begin
   WriteLn(Format('Voltage: %f V', [voltage/1000.0]));

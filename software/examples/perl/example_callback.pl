@@ -7,7 +7,7 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change XYZ to the UID of your Analog In Bricklet 3.0
 
-# Callback subroutine for voltage callback (parameter has unit mV)
+# Callback subroutine for voltage callback
 sub cb_voltage
 {
     my ($voltage) = @_;

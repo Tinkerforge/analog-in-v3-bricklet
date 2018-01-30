@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Analog In Bricklet 3.0
 
-// Callback function for voltage callback (parameter has unit mV)
+// Callback function for voltage callback
 void cb_voltage(uint16_t voltage, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -30,18 +30,15 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-	analog_in_v3_set_debounce_period(&ai, 10000);
-
 	// Register voltage callback to function cb_voltage
 	analog_in_v3_register_callback(&ai,
 	                               ANALOG_IN_V3_CALLBACK_VOLTAGE,
 	                               (void *)cb_voltage,
 	                               NULL);
 
-	// Configure threshold for voltage "outside of 5 to 0 V" (unit is mV)
+	// Configure threshold for voltage "smaller than 5 V"
 	// with a debounce period of 1s (1000ms)
-	analog_in_v3_set_voltage_callback_configuration(&ai, 1000, false, 'o', 5*1000, 0);
+	analog_in_v3_set_voltage_callback_configuration(&ai, 1000, false, '<', 5*1000, 0);
 
 	printf("Press key to exit\n");
 	getchar();

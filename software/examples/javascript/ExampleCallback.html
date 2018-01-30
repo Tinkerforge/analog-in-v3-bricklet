@@ -48,7 +48,7 @@
 
                 // Register voltage callback
                 ai.on(Tinkerforge.BrickletAnalogInV3.CALLBACK_VOLTAGE,
-                    // Callback function for voltage callback (parameter has unit mV)
+                    // Callback function for voltage callback
                     function (voltage) {
                         textArea.value += 'Voltage: ' + voltage/1000.0 + ' V\n';
                         textArea.scrollTop = textArea.scrollHeight;

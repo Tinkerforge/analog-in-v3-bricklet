@@ -13,7 +13,7 @@ my $ai = Tinkerforge::BrickletAnalogInV3->new(&UID, $ipcon); # Create device obj
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Get current voltage (unit is mV)
+# Get current voltage
 my $voltage = $ai->get_voltage();
 print "Voltage: " . $voltage/1000.0 . " V\n";
 

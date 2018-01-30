@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current voltage (unit is mV)
+    # Get current voltage
     voltage = ai.get_voltage()
     print("Voltage: " + str(voltage/1000.0) + " V")
 

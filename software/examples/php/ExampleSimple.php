@@ -16,7 +16,7 @@ $ai = new BrickletAnalogInV3(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get current voltage (unit is mV)
+// Get current voltage
 $voltage = $ai->getVoltage();
 echo "Voltage: " . $voltage/1000.0 . " V\n";
 

@@ -17,7 +17,7 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Add voltage listener (parameter has unit mV)
+		// Add voltage listener
 		ai.addVoltageListener(new BrickletAnalogInV3.VoltageListener() {
 			public void voltage(int voltage) {
 				System.out.println("Voltage: " + voltage/1000.0 + " V");

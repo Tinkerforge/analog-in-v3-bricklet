@@ -21,7 +21,7 @@ function octave_example_callback()
     ipcon.disconnect();
 end
 
-% Callback function for voltage callback (parameter has unit mV)
+% Callback function for voltage callback
 function cb_voltage(e)
     fprintf("Voltage: %g V\n", e.voltage/1000.0);
 end

@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for voltage callback (parameter has unit mV) }
+{ Callback procedure for voltage callback }
 procedure TExample.VoltageCB(sender: TBrickletAnalogInV3; const voltage: word);
 begin
   WriteLn(Format('Voltage: %f V', [voltage/1000.0]));
@@ -42,15 +42,12 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
-  ai.SetDebouncePeriod(10000);
-
   { Register voltage callback to procedure VoltageCB }
   ai.OnVoltage := {$ifdef FPC}@{$endif}VoltageCB;
 
-  { Configure threshold for voltage "outside of 5 to 0 V" (unit is mV)
+  { Configure threshold for voltage "smaller than 5 V"
     with a debounce period of 1s (1000ms) }
-  ai.SetVoltageCallbackConfiguration(1000, false, 'o', 5*1000, 0);
+  ai.SetVoltageCallbackConfiguration(1000, false, '<', 5*1000, 0);
 
   WriteLn('Press key to exit');
   ReadLn;

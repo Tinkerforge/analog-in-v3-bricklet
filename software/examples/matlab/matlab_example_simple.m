@@ -12,7 +12,7 @@ function matlab_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current voltage (unit is mV)
+    % Get current voltage
     voltage = ai.getVoltage();
     fprintf('Voltage: %g V\n', voltage/1000.0);
 

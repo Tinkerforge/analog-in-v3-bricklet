@@ -29,13 +29,13 @@
 
 extern Voltage voltage;
 
-CallbackValue callback_value_voltage;
+CallbackValue_uint16_t callback_value_voltage;
 
 BootloaderHandleMessageResponse handle_message(const void *message, void *response) {
 	switch(tfp_get_fid_from_message(message)) {
-		case FID_GET_VOLTAGE: return get_callback_value(message, response, &callback_value_voltage);
-		case FID_SET_VOLTAGE_CALLBACK_CONFIGURATION: return set_callback_value_callback_configuration(message, &callback_value_voltage);
-		case FID_GET_VOLTAGE_CALLBACK_CONFIGURATION: return get_callback_value_callback_configuration(message, response, &callback_value_voltage);
+		case FID_GET_VOLTAGE: return get_callback_value_uint16_t(message, response, &callback_value_voltage);
+		case FID_SET_VOLTAGE_CALLBACK_CONFIGURATION: return set_callback_value_callback_configuration_uint16_t(message, &callback_value_voltage);
+		case FID_GET_VOLTAGE_CALLBACK_CONFIGURATION: return get_callback_value_callback_configuration_uint16_t(message, response, &callback_value_voltage);
 		case FID_SET_OVERSAMPLING: return set_oversampling(message);
 		case FID_GET_OVERSAMPLING: return get_oversampling(message, response);
 		case FID_SET_CALIBRATION: return set_calibration(message);
@@ -43,7 +43,6 @@ BootloaderHandleMessageResponse handle_message(const void *message, void *respon
 		default: return HANDLE_MESSAGE_RESPONSE_NOT_SUPPORTED;
 	}
 }
-
 
 BootloaderHandleMessageResponse set_oversampling(const SetOversampling *data) {
 	if(data->oversampling > ANALOG_IN_V3_OVERSAMPLING_16384) {
@@ -85,11 +84,8 @@ BootloaderHandleMessageResponse get_calibration(const GetCalibration *data, GetC
 	return HANDLE_MESSAGE_RESPONSE_NEW_MESSAGE;
 }
 
-
-
-
 bool handle_voltage_callback(void) {
-	return handle_callback_value_callback(&callback_value_voltage, FID_CALLBACK_VOLTAGE);
+	return handle_callback_value_callback_uint16_t(&callback_value_voltage, FID_CALLBACK_VOLTAGE);
 }
 
 void communication_tick(void) {
@@ -97,7 +93,7 @@ void communication_tick(void) {
 }
 
 void communication_init(void) {
-	callback_value_init(&callback_value_voltage, voltage_get_voltage);
+	callback_value_init_uint16_t(&callback_value_voltage, voltage_get_voltage);
 
 	communication_callback_init();
 }

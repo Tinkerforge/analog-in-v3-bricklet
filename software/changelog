@@ -1,2 +1,5 @@
-2.0.0:
+2018-02-19: 2.0.0 (7bb92a0)
 - Initial version
+
+<unknown>: 2.0.1 (<unknown>)
+- Fix wrong length for get-voltage packet (through bricklib2)

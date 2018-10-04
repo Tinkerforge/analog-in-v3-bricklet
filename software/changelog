@@ -4,5 +4,5 @@
 2018-06-07: 2.0.1 (b1f6948)
 - Fix wrong length for get-voltage packet (through bricklib2)
 
-2018-10-04: 2.0.2 (TBD)
+2018-10-04: 2.0.2 (cd7423c)
 - Fix race condition with potential buffer overflow (through bricklib2)

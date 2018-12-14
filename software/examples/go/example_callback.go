@@ -19,7 +19,7 @@ func main() {
 	// Don't use device before ipcon is connected.
 
 	ai.RegisterVoltageCallback(func(voltage uint16) {
-		fmt.Printf("Voltage: %d V\n", float64(voltage)/1000.0)
+		fmt.Printf("Voltage: %f V\n", float64(voltage)/1000.0)
 	})
 
 	// Set period for voltage callback to 1s (1000ms) without a threshold.

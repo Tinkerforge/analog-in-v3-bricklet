@@ -1,53 +1,33 @@
-update=Mo 19 Nov 2018 12:06:55 CET
+update=22/05/2015 07:44:53
 version=1
 last_client=kicad
-[cvpcb]
-version=1
-NetITyp=0
-NetIExt=.net
-PkgIExt=.pkg
-NetDir=
-LibDir=
-NetType=0
-[cvpcb/libraries]
-EquName1=devcms
 [general]
 version=1
+RootSch=
+BoardNm=
 [pcbnew]
 version=1
-LastNetListRead=industrial-ai2.net
+LastNetListRead=
 UseCmpFile=1
-PadDrill="    0,000000"
-PadDrillOvalY="    0,000000"
-PadSizeH="    0,406400"
-PadSizeV="    1,270000"
-PcbTextSizeV="    1,500000"
-PcbTextSizeH="    1,500000"
-PcbTextThickness="    0,300000"
-ModuleTextSizeV="    1,500000"
-ModuleTextSizeH="    1,500000"
-ModuleTextSizeThickness="    0,150000"
-SolderMaskClearance="    0,200000"
-SolderMaskMinWidth="    0,000000"
-DrawSegmentWidth="    0,200000"
-BoardOutlineThickness="    0,150000"
-ModuleOutlineThickness="    0,150000"
-[pcbnew/libraries]
-LibDir=kicad-libraries
-LibName1=tinkerforge
-LibName2=sockets
-LibName3=connect
-LibName4=discret
-LibName5=pin_array
-LibName6=divers
-LibName7=libcms
-LibName8=display
-LibName9=valves
-LibName10=led
-LibName11=dip_sockets
-LibName12=encoder
-LibName13=Logo
-LibName14=standard
+PadDrill=0.600000000000
+PadDrillOvalY=0.600000000000
+PadSizeH=1.500000000000
+PadSizeV=1.500000000000
+PcbTextSizeV=1.500000000000
+PcbTextSizeH=1.500000000000
+PcbTextThickness=0.300000000000
+ModuleTextSizeV=1.000000000000
+ModuleTextSizeH=1.000000000000
+ModuleTextSizeThickness=0.150000000000
+SolderMaskClearance=0.000000000000
+SolderMaskMinWidth=0.000000000000
+DrawSegmentWidth=0.200000000000
+BoardOutlineThickness=0.100000000000
+ModuleOutlineThickness=0.150000000000
+[cvpcb]
+version=1
+NetIExt=net
 [eeschema]
 version=1
 LibDir=
+[eeschema/libraries]

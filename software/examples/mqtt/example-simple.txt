@@ -3,4 +3,4 @@
 setup:
 	# Get current voltage
 	subscribe to tinkerforge/response/analog_in_v3_bricklet/XYZ/get_voltage
-	publish '' to tinkerforge/request/analog_in_v3_bricklet/XYZ/get_voltage 
+	publish '' to tinkerforge/request/analog_in_v3_bricklet/XYZ/get_voltage

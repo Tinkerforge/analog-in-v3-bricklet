@@ -7,5 +7,5 @@
 2018-10-04: 2.0.2 (cd7423c)
 - Fix race condition with potential buffer overflow (through bricklib2)
 
-2019-05-29: 2.0.3 (TBD)
+2019-05-29: 2.0.3 (4dc98b9)
 - Fix SPITFP IRQ race condition with other higher prio IRQs (through bricklib2)

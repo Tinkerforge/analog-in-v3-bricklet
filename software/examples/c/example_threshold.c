@@ -33,7 +33,7 @@ int main(void) {
 	// Register voltage callback to function cb_voltage
 	analog_in_v3_register_callback(&ai,
 	                               ANALOG_IN_V3_CALLBACK_VOLTAGE,
-	                               (void *)cb_voltage,
+	                               (void (*)(void))cb_voltage,
 	                               NULL);
 
 	// Configure threshold for voltage "smaller than 5 V"

@@ -1,14 +1,9 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_analog_in_v3.h"
 
 #define UID "XYZ" // Change XYZ to the UID of your Analog In Bricklet 3.0
 
 void check(int rc, const char* msg);
-
-
-
 
 TF_AnalogInV3 ai;
 

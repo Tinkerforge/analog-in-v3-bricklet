@@ -18,16 +18,14 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_analog_in_v3_create(&ai, UID, hal), "create device object");
 
-
 	// Register voltage callback to function voltage_handler
 	tf_analog_in_v3_register_voltage_callback(&ai,
-	                                         voltage_handler,
-	                                         NULL);
+	                                          voltage_handler,
+	                                          NULL);
 
 	// Configure threshold for voltage "smaller than 5 V"
 	// with a debounce period of 1s (1000ms)
 	tf_analog_in_v3_set_voltage_callback_configuration(&ai, 1000, false, '<', 5*1000, 0);
-
 }
 
 void example_loop(TF_HalContext *hal) {

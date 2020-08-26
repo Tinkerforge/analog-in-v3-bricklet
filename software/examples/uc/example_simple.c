@@ -11,13 +11,11 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_analog_in_v3_create(&ai, UID, hal), "create device object");
 
-
 	// Get current voltage
 	uint16_t voltage;
 	check(tf_analog_in_v3_get_voltage(&ai, &voltage), "get voltage");
 
 	tf_hal_printf("Voltage: %d 1/%d V\n", voltage, 1000.0);
-
 }
 
 void example_loop(TF_HalContext *hal) {

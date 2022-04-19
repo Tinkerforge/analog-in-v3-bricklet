@@ -9,8 +9,8 @@
 
 void check(int rc, const char* msg);
 
-void example_setup(TF_HalContext *hal);
-void example_loop(TF_HalContext *hal);
+void example_setup(TF_HAL *hal);
+void example_loop(TF_HAL *hal);
 
 
 // Callback function for voltage callback
@@ -22,7 +22,7 @@ static void voltage_handler(TF_AnalogInV3 *device, uint16_t voltage, void *user_
 
 static TF_AnalogInV3 ai;
 
-void example_setup(TF_HalContext *hal) {
+void example_setup(TF_HAL *hal) {
 	// Create device object
 	check(tf_analog_in_v3_create(&ai, UID, hal), "create device object");
 
@@ -35,7 +35,7 @@ void example_setup(TF_HalContext *hal) {
 	tf_analog_in_v3_set_voltage_callback_configuration(&ai, 1000, false, 'x', 0, 0);
 }
 
-void example_loop(TF_HalContext *hal) {
+void example_loop(TF_HAL *hal) {
 	// Poll for callbacks
 	tf_hal_callback_tick(hal, 0);
 }
